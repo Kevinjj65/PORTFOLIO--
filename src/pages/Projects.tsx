@@ -12,13 +12,13 @@ const Projects: React.FC = () => {
           <div className="bg-white rounded-xl shadow-xl overflow-hidden">
             <div className="aspect-video">
               <img 
-                src="/src/assets/jy.jpg" 
+                src="/assets/jy.jpg" 
                 alt="Project Image" 
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="p-4">
-              <h3 className="text-lg font-semibold mb-2 font-['Poppins']">Project Title</h3>
+              <h3 className="text-lg font-semibold mb-2 font-['Poppins']">CHORUS</h3>
               <p className="text-sm text-gray-600 font-['Poppins']">
                 A group project for a Jesus Youth Event conducted on Rajagiri School Of Engineering and Technology
               </p>
@@ -29,15 +29,15 @@ const Projects: React.FC = () => {
           <div className="bg-white rounded-xl shadow-xl overflow-hidden">
             <div className="aspect-video bg-gray-100">
             <img 
-                src="/src/assets/gu.png" 
+                src="/assets/gu.png" 
                 alt="Project Image" 
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="p-4">
-              <h3 className="text-lg font-semibold mb-2 font-['Poppins']">Project Title</h3>
+              <h3 className="text-lg font-semibold mb-2 font-['Poppins']">GREEN UP</h3>
               <p className="text-sm text-gray-600 font-['Poppins']">
-               GREEN UP: A webapp on environment waste management that promotes community engagement by reward based participation.
+                A webapp on environment waste management that promotes community engagement by reward based participation.
               </p>
             </div>
           </div>
@@ -48,7 +48,7 @@ const Projects: React.FC = () => {
       <div className="w-1/2 h-full relative">
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/src/assets/earth.jpg)' }}
+          style={{ backgroundImage: 'url(/public/assets/earth.jpg)' }}
         />
       </div>
     </div>

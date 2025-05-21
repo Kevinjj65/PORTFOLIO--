@@ -11,18 +11,40 @@ const FullPageScrollWrapper: React.FC = () => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const currentSectionRef = useRef<number>(0);
+  const isThrottledRef = useRef(false); // Prevent rapid scrolls
 
   const sections = ['/', '/about', '/projects', '/skills', '/contact'];
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
+      const target = e.target as HTMLElement;
+
+      // Check if target is inside a scrollable container (like Skills)
+      const isInsideScrollable = target.closest('.scrollable-content');
+
+      if (isInsideScrollable) return; // Don't trigger full-page scroll
+
       e.preventDefault();
-      const direction = e.deltaY > 0 ? 1 : -1;
-      const newIndex = Math.max(0, Math.min(sections.length - 1, currentSectionRef.current + direction));
-      
+
+      if (isThrottledRef.current) return;
+
+      const direction = e.deltaY > 30 ? 1 : e.deltaY < -30 ? -1 : 0;
+      if (direction === 0) return;
+
+      const newIndex = Math.max(
+        0,
+        Math.min(sections.length - 1, currentSectionRef.current + direction)
+      );
+
       if (newIndex !== currentSectionRef.current) {
+        isThrottledRef.current = true;
         currentSectionRef.current = newIndex;
         navigate(sections[newIndex]);
+
+        // Throttle scroll for 800ms
+        setTimeout(() => {
+          isThrottledRef.current = false;
+        }, 800);
       }
     };
 
@@ -54,22 +76,25 @@ const FullPageScrollWrapper: React.FC = () => {
   return (
     <div 
       ref={containerRef}
-      className="h-screen overflow-y-auto snap-y snap-mandatory"
+      className="h-screen overflow-y-auto"
       style={{ scrollBehavior: 'smooth' }}
     >
-      <div className="h-screen snap-start">
+      <div className="h-screen">
         <Hero />
       </div>
-      <div className="h-screen snap-start">
+      <div className="h-screen">
         <About />
       </div>
-      <div className="h-screen snap-start">
+      <div className="h-screen">
         <Projects />
       </div>
-      <div className="h-screen snap-start">
-        <Skills />
+      <div className="h-screen">
+        {/* 👇 Add scrollable-content class to allow scrolling within */}
+        <div className="scrollable-content h-full overflow-y-auto">
+          <Skills />
+        </div>
       </div>
-      <div className="h-screen snap-start">
+      <div className="h-screen">
         <Contact />
       </div>
     </div>

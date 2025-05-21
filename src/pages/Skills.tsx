@@ -9,14 +9,18 @@ const Skills: React.FC = () => {
       { name: 'Tailwind CSS', level: 'Advanced' }
     ],
     'Backend & Database': [
-      { name: 'Supabase', level: 'Intermediate' },
-      { name: 'Firebase', level: 'Intermediate' },
       { name: 'PostgreSQL', level: 'Intermediate' }
+    ],
+    
+    'Services': [
+      { name: 'Supabase', level: 'Intermediate' },
+      { name: 'Firebase', level: 'Intermediate' }
     ],
     'Programming Languages': [
       { name: 'Python', level: 'Advanced' },
       { name: 'C', level: 'Intermediate' },
-      { name: 'Java', level: 'Intermediate' }
+      { name: 'Java', level: 'Intermediate' },
+      { name: 'Javascript', level: 'Intermediate' }
     ],
     'AI & Machine Learning': [
       { name: 'Machine Learning', level: 'Intermediate' },
@@ -25,14 +29,23 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex">
-      {/* Left side - Content */}
-      <div className="w-1/2 h-full bg-white flex flex-col items-center justify-start pt-20">
-        <h1 className="text-4xl font-bold mb-12 font-['Poppins']">Skills</h1>
-        
-        <div className="w-full max-w-2xl px-8 space-y-8">
+    <div className="h-screen flex overflow-hidden">
+      
+      {/* Left side - Background Image */}
+      <div className="w-1/2 h-full relative">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/assets/air.jpg)' }}
+        />
+      </div>
+
+      {/* Right side - Skills Content */}
+      <div className="w-1/2 h-full bg-white flex flex-col items-center pt-10 overflow-hidden">
+        <h1 className="text-4xl font-bold mb-6 font-['Poppins']">Skills</h1>
+
+        <div className="w-full max-w-2xl px-6 space-y-4 overflow-y-auto h-full pb-10">
           {Object.entries(skills).map(([category, skillList]) => (
-            <div key={category} className="bg-white rounded-xl shadow-xl p-6">
+            <div key={category} className="bg-white rounded-xl shadow-xl p-4">
               <h2 className="text-2xl font-semibold mb-4 font-['Poppins'] text-gray-800">{category}</h2>
               <div className="grid grid-cols-2 gap-4">
                 {skillList.map((skill) => (
@@ -50,15 +63,8 @@ const Skills: React.FC = () => {
         </div>
       </div>
 
-      {/* Right side - Air background */}
-      <div className="w-1/2 h-full relative">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/src/assets/air.jpg)' }}
-        />
-      </div>
     </div>
   );
 };
 
-export default Skills; 
+export default Skills;
