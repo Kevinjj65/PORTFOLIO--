@@ -4,7 +4,7 @@ const Projects: React.FC = () => {
   return (
     <div className="h-screen flex">
       {/* Left side - Project boxes */}
-      <div className="w-1/2 h-full bg-white flex flex-col items-center justify-start pt-20">
+      <div className="w-1/2 h-full bg-white flex flex-col items-center justify-start pt-5">
         <h1 className="text-4xl font-bold mb-12 font-['Poppins']">Projects</h1>
         
         <div className="space-y-7 w-full max-w-md px-6">
