@@ -6,7 +6,7 @@ import EmailIcon from '@mui/icons-material/Email';
 
 const Contact: React.FC = () => {
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="h-screen flex items-center justify-center py-[700px]">
       <div className="max-w-4xl w-full mx-auto px-8">
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8">
           <h1 className="text-4xl font-bold mb-8 font-['Poppins'] text-center">Contact</h1>
