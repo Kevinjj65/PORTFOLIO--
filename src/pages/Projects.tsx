@@ -48,7 +48,7 @@ const Projects: React.FC = () => {
       <div className="w-1/2 h-full relative">
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/assets/earth.jpg)' }}
+          style={{ backgroundImage: 'url(/public/assets/earth.jpg)' }}
         />
       </div>
     </div>
