@@ -86,7 +86,7 @@ const CircularMenu: React.FC<CircularMenuProps> = ({
   };
 
   // For diagonal lines
-  const lines = menuItems.map((item, idx) => {
+  const lines = menuItems.map((item) => {
     const angle = item.angle;
     return (
       <div
