@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
       <div className="w-1/2 relative flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/public/assets/koi-bg.png)' }}
+          style={{ backgroundImage: 'url(assets/koi-bg.png)' }}
         ></div>
         <div ref={imageCenterRef} className="z-10">
           {/* Initial position reference for the draggable menu */}
