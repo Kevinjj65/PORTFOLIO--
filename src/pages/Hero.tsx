@@ -24,7 +24,7 @@ const scrollingTextStyle = `
 
 const Hero: React.FC = () => {
   const [fishArray, setFishArray] = useState<number[]>([]);
-  const imageCenterRef = React.useRef<HTMLDivElement>(null);
+  //const imageCenterRef = React.useRef<HTMLDivElement>(null);
 
   const handleOClick = () => {
     setFishArray(FISH_DIRECTIONS.map((_, i) => i));
