@@ -11,7 +11,6 @@ const Skills: React.FC = () => {
     'Backend & Database': [
       { name: 'PostgreSQL', level: 'Intermediate' }
     ],
-    
     'Services': [
       { name: 'Supabase', level: 'Intermediate' },
       { name: 'Firebase', level: 'Intermediate' }
@@ -29,21 +28,17 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex overflow-hidden">
-      
-      {/* Left side - Background Image */}
-      <div className="w-1/2 h-full relative">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/assets/air.jpg)' }}
-        />
-      </div>
+    <div
+      className="h-screen bg-cover bg-center flex items-center justify-center"
+      style={{ backgroundImage: 'url(/assets/air.jpg)' }}
+    >
+      {/* Main Box */}
+      <div className="bg-white bg-opacity-90 rounded-2xl shadow-2xl w-[90%] max-w-3xl h-[85%] flex flex-col items-center p-6">
+        {/* Heading */}
+        <h1 className="text-4xl font-bold font-['Poppins'] mb-4">Skills</h1>
 
-      {/* Right side - Skills Content */}
-      <div className="w-1/2 h-full bg-white flex flex-col items-center pt-10 overflow-hidden">
-        <h1 className="text-4xl font-bold mb-6 font-['Poppins']">Skills</h1>
-
-        <div className="w-full max-w-2xl px-6 space-y-4 overflow-y-auto h-full pb-10">
+        {/* Scrollable Area */}
+        <div className="w-full h-full overflow-y-auto space-y-4 pr-2">
           {Object.entries(skills).map(([category, skillList]) => (
             <div key={category} className="bg-white rounded-xl shadow-xl p-4">
               <h2 className="text-2xl font-semibold mb-4 font-['Poppins'] text-gray-800">{category}</h2>
@@ -62,7 +57,6 @@ const Skills: React.FC = () => {
           ))}
         </div>
       </div>
-
     </div>
   );
 };

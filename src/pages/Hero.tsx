@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import KoiFish, { type FishDirection } from '../components/KoiFish';
 
-//const retroFont = "font-['Press_Start_2P']"; // You can use another retro font if you prefer
-
 const FISH_DIRECTIONS: FishDirection[] = [0, 45, 90, 135, 180, 225, 270, 315];
 
 const FISH_COLORS = [
@@ -16,6 +14,14 @@ const FISH_COLORS = [
   '#FF4DDB', // NW
 ];
 
+// Add custom animation keyframes
+const scrollingTextStyle = `
+@keyframes scrollText {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+`;
+
 const Hero: React.FC = () => {
   const [fishArray, setFishArray] = useState<number[]>([]);
   const imageCenterRef = React.useRef<HTMLDivElement>(null);
@@ -28,7 +34,6 @@ const Hero: React.FC = () => {
     setFishArray((prev) => prev.filter((d) => d !== idx));
   };
 
-  // Helper to render spaced letters
   const renderSpaced = (word: string, specialO?: boolean) => (
     <span className={`inline-flex relative tracking-widest`}>
       {word.split('').map((char, idx) =>
@@ -50,21 +55,34 @@ const Hero: React.FC = () => {
   );
 
   return (
-    <div className="h-screen flex">
-      {/* Left Section - Name and Designation (White Background) */}
-      <div className="w-1/2 bg-white flex items-center justify-center relative">
-        <div className="text-center relative z-10">
-          <h1 className={`text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-gray-800 flex flex-wrap justify-center items-center gap-2 `}>
-            {renderSpaced('Kevin')}
-            &nbsp;
-            {renderSpaced('Johns', true)}
-            &nbsp;
-            {renderSpaced('Jolly')}
-          </h1>
-          <p className={`text-xl md:text-3xl text-gray-500 font-medium `}>
+    <div
+      className="min-h-screen bg-cover bg-center flex items-center justify-center p-4"
+      style={{ backgroundImage: "url(/assets/koi-bg.jpg)" }}
+    >
+      {/* Inject custom animation style */}
+      <style>{scrollingTextStyle}</style>
+
+      <div className="bg-white bg-opacity-90 rounded-3xl shadow-lg p-6 md:p-12 w-full max-w-6xl text-center relative z-10 min-h-[75vh] flex flex-col justify-center">
+        <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-snug text-gray-800 flex flex-wrap justify-center items-center gap-2">
+          {renderSpaced("Kevin")}
+          &nbsp;
+          {renderSpaced("Johns", true)}
+          &nbsp;
+          {renderSpaced("Jolly")}
+        </h1>
+
+        {/* Scrolling text */}
+        <div className="overflow-hidden mt-4 md:mt-6">
+          <div
+            className="whitespace-nowrap inline-block text-lg md:text-2xl text-gray-600 font-medium"
+            style={{
+              animation: 'scrollText 20s linear infinite',
+            }}
+          >
             Web Developer & Machine Learning Enthusiast
-          </p>
+          </div>
         </div>
+
         {fishArray.map((idx) => (
           <KoiFish
             key={FISH_DIRECTIONS[idx]}
@@ -74,19 +92,8 @@ const Hero: React.FC = () => {
           />
         ))}
       </div>
-
-      {/* Right Section - Koi Pond Background */}
-      <div className="w-1/2 relative flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/assets/koi-bg.png)' }}
-        ></div>
-        <div ref={imageCenterRef} className="z-10">
-          {/* Initial position reference for the draggable menu */}
-        </div>
-      </div>
     </div>
   );
 };
 
-export default Hero; 
+export default Hero;

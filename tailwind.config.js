@@ -8,8 +8,13 @@ export default {
     extend: {
       animation: {
         'lightning-main': 'lightning 1.5s ease-in-out infinite',
+        marquee: 'marquee 20s linear infinite',
       },
       keyframes: {
+         marquee: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
         lightning: {
           '0%': { 
             opacity: '0.3',

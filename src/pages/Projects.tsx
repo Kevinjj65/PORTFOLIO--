@@ -2,15 +2,19 @@ import React from 'react';
 
 const Projects: React.FC = () => {
   return (
-    <div className="h-screen flex">
-      {/* Left side - Project boxes */}
-      <div className="w-1/2 h-full bg-white flex flex-col items-center justify-start pt-5">
-        <h1 className="text-4xl font-bold mb-6 font-['Poppins']">Projects</h1>
-        
-        <div className="space-y-4 w-full max-w-md px-6">
+    <div
+      className="min-h-screen bg-cover bg-center flex items-center justify-center p-4"
+      style={{ backgroundImage: 'url(/assets/earth.jpg)' }}
+    >
+      <div className="bg-white bg-opacity-90 rounded-3xl shadow-lg p-6 md:p-12 w-full max-w-6xl min-h-[75vh] flex flex-col justify-start items-center">
+        <h1 className="text-4xl md:text-5xl font-bold mb-8 text-gray-800 font-['Poppins'] text-center">
+          Projects
+        </h1>
+
+        <div className="flex flex-col md:flex-row gap-6 w-full justify-center">
           {/* First Project Box */}
-          <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-            <div className="h-40"> {/* Reduced image height */}
+          <div className="bg-white rounded-xl shadow-xl overflow-hidden w-full md:w-1/2">
+            <div className="h-40">
               <img 
                 src="/assets/jy.jpg" 
                 alt="Project Image" 
@@ -26,8 +30,8 @@ const Projects: React.FC = () => {
           </div>
 
           {/* Second Project Box */}
-          <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-            <div className="h-40 bg-gray-100"> {/* Reduced image height */}
+          <div className="bg-white rounded-xl shadow-xl overflow-hidden w-full md:w-1/2">
+            <div className="h-40">
               <img 
                 src="/assets/gu.png" 
                 alt="Project Image" 
@@ -42,14 +46,6 @@ const Projects: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Right side - Earth background */}
-      <div className="w-1/2 h-full relative">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/assets/earth.jpg)' }}
-        />
       </div>
     </div>
   );
