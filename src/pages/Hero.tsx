@@ -25,6 +25,7 @@ const scrollingTextStyle = `
 const Hero: React.FC = () => {
   const [fishArray, setFishArray] = useState<number[]>([]);
   const [showHint, setShowHint] = useState(false);
+  const [isBatman, setIsBatman] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -36,6 +37,7 @@ const Hero: React.FC = () => {
 
   const handleOClick = () => {
     setFishArray(FISH_DIRECTIONS.map((_, i) => i));
+    setIsBatman(true);
   };
 
   const handleFishDone = (idx: number) => {
@@ -102,7 +104,7 @@ const Hero: React.FC = () => {
 
         {showHint && (
           <p className="text-sm text-gray-500 mt-8 font-['Poppins'] animate-fadeIn">
-            Press o in Johns for a surprise
+            {isBatman ? "I am Batman" : "Press o in Johns for a surprise"}
           </p>
         )}
       </div>
