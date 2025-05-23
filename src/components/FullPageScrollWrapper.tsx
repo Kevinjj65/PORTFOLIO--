@@ -90,7 +90,7 @@ const FullPageScrollWrapper: React.FC = () => {
       </div>
       <div className="h-screen">
         {/* 👇 Add scrollable-content class to allow scrolling within */}
-        <div className="scrollable-content h-full overflow-y-auto">
+        <div className="scrollable-content h-dvh overflow-y-auto">
           <Skills />
         </div>
       </div>

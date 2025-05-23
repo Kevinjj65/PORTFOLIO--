@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-center flex items-center justify-center p-4"
+      className="h-dvh bg-cover bg-center flex items-center justify-center p-4"
       style={{ backgroundImage: "url(/assets/koi-bg.jpg)" }}
     >
       {/* Inject custom animation style */}
