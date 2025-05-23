@@ -6,27 +6,42 @@ const DraggableMenu: React.FC = () => {
   const { menuPosition, setMenuPosition, isDragging, setIsDragging, menuRef, isMenuOpen, setIsMenuOpen } = useMenu();
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMove = (e: MouseEvent | TouchEvent) => {
       if (isDragging && menuRef.current) {
         const rect = menuRef.current.getBoundingClientRect();
-        const x = e.clientX - rect.width / 2;
-        const y = e.clientY - rect.height / 2;
+        let clientX, clientY;
+
+        if (e instanceof MouseEvent) {
+          clientX = e.clientX;
+          clientY = e.clientY;
+        } else {
+          // Touch event
+          clientX = e.touches[0].clientX;
+          clientY = e.touches[0].clientY;
+        }
+
+        const x = clientX - rect.width / 2;
+        const y = clientY - rect.height / 2;
         setMenuPosition({ x, y });
       }
     };
 
-    const handleMouseUp = () => {
+    const handleEnd = () => {
       setIsDragging(false);
     };
 
     if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('mousemove', handleMove);
+      document.addEventListener('touchmove', handleMove, { passive: false });
+      document.addEventListener('mouseup', handleEnd);
+      document.addEventListener('touchend', handleEnd);
     }
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mousemove', handleMove);
+      document.removeEventListener('touchmove', handleMove);
+      document.removeEventListener('mouseup', handleEnd);
+      document.removeEventListener('touchend', handleEnd);
     };
   }, [isDragging, setMenuPosition, setIsDragging, menuRef]);
 
@@ -49,8 +64,10 @@ const DraggableMenu: React.FC = () => {
           top: `${menuPosition.y}px`,
           cursor: isDragging ? 'grabbing' : 'grab',
           zIndex: 50,
+          touchAction: 'none', // Prevent default touch actions
         }}
         onMouseDown={() => setIsDragging(true)}
+        onTouchStart={() => setIsDragging(true)}
       >
         <button
           className="w-24 h-24 rounded-full bg-gray-600 flex items-center justify-center text-white font-semibold text-lg shadow-lg hover:bg-gray-300 transition-colors"
