@@ -34,10 +34,14 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="h-dvh flex items-center justify-center py-24">
-      <div className="max-w-4xl w-full mx-auto px-8">
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8">
-          <h1 className="text-4xl font-bold mb-8 font-['Poppins'] text-center">Contact</h1>
+    <div
+      className="min-h-screen bg-cover bg-center flex items-center justify-center p-4"
+      style={{ backgroundImage: 'url(/assets/water.jpg)' }}
+    >
+      <div className="bg-white bg-opacity-90 rounded-2xl shadow-2xl w-full max-w-6xl h-[85vh] flex flex-col items-center p-4 sm:p-6">
+        <h1 className="text-3xl sm:text-4xl font-bold font-['Poppins'] mb-4 text-center">Contact</h1>
+        
+        <div className="w-full h-full overflow-y-auto pr-2">
           <div className="space-y-8">
             <div className="bg-gray-50/50 p-6 rounded-lg">
               <h2 className="text-2xl font-semibold mb-4 font-['Poppins'] text-center">Get in Touch</h2>
@@ -84,81 +88,76 @@ const Contact: React.FC = () => {
                   <EmailIcon className="text-3xl" />
                   <span>Email</span>
                 </a>
+              </div>
+            </div>
 
-                {/* NEW Button to Trigger Modal */}
+            <div className="flex justify-center">
+              <button
+                onClick={() => setShowModal(true)}
+                className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-['Poppins'] flex items-center space-x-2"
+              >
+                <MarkEmailReadIcon />
+                <span>Send Message</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Modal */}
+        {showModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg p-6 w-full max-w-md">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold font-['Poppins']">Send Message</h2>
                 <button
-                  onClick={() => setShowModal(true)}
-                  className="col-span-2 flex items-center justify-center space-x-3 text-gray-700 hover:text-blue-600 transition-colors font-['Poppins'] p-4 rounded-lg hover:bg-gray-100"
+                  onClick={() => setShowModal(false)}
+                  className="text-gray-500 hover:text-gray-700"
                 >
-                  <MarkEmailReadIcon className="text-3xl" />
-                  <span>Type in any query here</span>
+                  <CloseIcon />
                 </button>
               </div>
-            </div>
-
-            <div className="bg-gray-50/50 p-6 rounded-lg text-center">
-              <h2 className="text-2xl font-semibold mb-4 font-['Poppins']">Location</h2>
-              <p className="text-gray-600 font-['Poppins']">
-                Based in Kerala, India<br />
-                Available for remote work worldwide
-              </p>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 font-['Poppins']">Name</label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 font-['Poppins']">Email</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 font-['Poppins']">Message</label>
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    rows={4}
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors font-['Poppins']"
+                >
+                  Send
+                </button>
+              </form>
             </div>
           </div>
-        </div>
+        )}
       </div>
-
-      {/* MODAL */}
-      {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
-            <button
-              onClick={() => setShowModal(false)}
-              className="absolute top-3 right-3 text-gray-500 hover:text-red-500"
-            >
-              <CloseIcon />
-            </button>
-            <h2 className="text-2xl font-semibold mb-4 font-['Poppins'] text-center">Send a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-4 font-['Poppins']">
-              <div>
-                <label className="block text-gray-700 mb-1">Name</label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 mb-1">Email</label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Your email"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 mb-1">Message</label>
-                <textarea
-                  rows={4}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Your message"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors"
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
