@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import KoiFish, { type FishDirection } from '../components/KoiFish';
 
 const FISH_DIRECTIONS: FishDirection[] = [0, 45, 90, 135, 180, 225, 270, 315];
@@ -24,7 +24,15 @@ const scrollingTextStyle = `
 
 const Hero: React.FC = () => {
   const [fishArray, setFishArray] = useState<number[]>([]);
-  //const imageCenterRef = React.useRef<HTMLDivElement>(null);
+  const [showHint, setShowHint] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowHint(true);
+    }, 15000); // 15 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleOClick = () => {
     setFishArray(FISH_DIRECTIONS.map((_, i) => i));
@@ -91,6 +99,12 @@ const Hero: React.FC = () => {
             onAnimationComplete={() => handleFishDone(idx)}
           />
         ))}
+
+        {showHint && (
+          <p className="text-sm text-gray-500 mt-8 font-['Poppins'] animate-fadeIn">
+            Press o in Johns for a surprise
+          </p>
+        )}
       </div>
     </div>
   );
