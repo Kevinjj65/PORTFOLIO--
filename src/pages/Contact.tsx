@@ -36,7 +36,7 @@ const Contact: React.FC = () => {
   return (
     <div
       className="min-h-screen bg-cover bg-center flex items-center justify-center p-4"
-      style={{ backgroundImage: 'url(/assets/water.jpg)' }}
+      style={{ backgroundImage: 'url(/assets/contactgif.gif)' }}
     >
       <div className="bg-white bg-opacity-90 rounded-2xl shadow-2xl w-full max-w-6xl h-[85vh] flex flex-col items-center p-4 sm:p-6">
         <h1 className="text-3xl sm:text-4xl font-bold font-['Poppins'] mb-4 text-center">Contact</h1>
