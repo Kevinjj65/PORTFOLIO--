@@ -3,16 +3,6 @@ import KoiFish, { type FishDirection } from '../components/KoiFish';
 
 const FISH_DIRECTIONS: FishDirection[] = [0, 45, 90, 135, 180, 225, 270, 315];
 
-const FISH_COLORS = [
-  '#FF914D', // N
-  '#FF4D6D', // NE
-  '#4DFFB8', // E
-  '#4D9BFF', // SE
-  '#FFD24D', // S
-  '#B84DFF', // SW
-  '#4DFFEC', // W
-  '#FF4DDB', // NW
-];
 
 // Add custom animation keyframes
 const scrollingTextStyle = `
@@ -97,7 +87,6 @@ const Hero: React.FC = () => {
           <KoiFish
             key={FISH_DIRECTIONS[idx]}
             direction={FISH_DIRECTIONS[idx]}
-            color={FISH_COLORS[idx]}
             onAnimationComplete={() => handleFishDone(idx)}
           />
         ))}

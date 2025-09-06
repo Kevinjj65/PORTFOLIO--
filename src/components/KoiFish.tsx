@@ -5,7 +5,6 @@ export type FishDirection = 0 | 45 | 90 | 135 | 180 | 225 | 270 | 315;
 
 interface KoiFishProps {
   direction: FishDirection;
-  color: string;
   onAnimationComplete: () => void;
 }
 
