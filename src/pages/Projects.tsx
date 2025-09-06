@@ -56,6 +56,11 @@ const Projects: React.FC = () => {
   // Duplicate the list for the seamless scroll effect
   const duplicatedProjects = [...projectList, ...projectList];
 
+  // Calculate new dimensions (300px * 1.25 = 375px)
+  const cardWidth = 'w-[375px]';
+  const cardHeight = 'h-[375px]';
+
+
   return (
     <>
       <style>
@@ -95,12 +100,13 @@ const Projects: React.FC = () => {
               {/* Using flexbox for horizontal layout */}
               <div className="flex items-center gap-6 px-3">
                 {duplicatedProjects.map((project, index) => (
-                  <div key={index} className="bg-white rounded-xl shadow-xl overflow-hidden w-[300px] h-[300px] flex-shrink-0">
+                  <div key={index} className={`bg-white rounded-xl shadow-xl overflow-hidden ${cardWidth} ${cardHeight} flex-shrink-0`}>
                     <div className={`h-1/2 flex items-center justify-center ${project.bgColor}`}>
                       <img
                         src={project.imgSrc}
                         alt="Project Image"
-                        className="w-auto h-full object-contain p-2"
+                        // Conditionally apply object-cover or object-contain based on background color
+                        className={`w-full h-full ${project.bgColor === 'bg-black' ? 'object-contain p-2' : 'object-cover'}`}
                       />
                     </div>
                     <div className="p-4">
